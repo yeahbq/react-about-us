@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../css/App.css';
+import '../css/Animation.css';
 import TopThree from './TopThree'
 import Cards from './Cards';
 import { CSSTransitionGroup } from 'react-transition-group'

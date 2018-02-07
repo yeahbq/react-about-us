@@ -39,18 +39,6 @@
   background: lightcyan;
 }
 
-.card-stack > .card:hover {
-  border: 1px solid lightgray;
-  outline: 2px solid lightgray;
-  outline-offset: 15px;
-  transition: all .1s ease-in;
-}
-
-.card-stack > .card:active {
-  background: rgb(154, 255, 255);
-
-}
-
 .top-three-card > .card {
   width:250px;
   height:250px;
@@ -66,13 +54,10 @@
   
 }
 
-.top-three-card > .card:nth-child(1) {
-  transition-property: width height background-color font-size left top color;
-  transition-duration:2s;
-  transition-delay:0.5s;
-  transition-timing-function: linear;
+/* .top-three-card > .card:nth-child(1) {
 
-}
+
+} */
 
 .App > header, .top-three{
   display: flex;
