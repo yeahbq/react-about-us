@@ -1,33 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-
-
-class Card extends Component {
-  constructor(props) {
-    super(props)
-  }
-   setCard = () => {
-    var arrCopy = this.props.three;
-    arrCopy.unshift(this.props.char);
-    arrCopy.pop();
-    console.log(arrCopy)
-    this.setState( (previousState) =>  
-      ({topThree: arrCopy})
-    )
-  }
-
-  render(){
-    return(
-      <div className="card"
-        onClick={this.setCard} 
-      >
-        <img src={this.props.char.img}></img>
-        <div>{this.props.char.name}</div>
-        <div>{this.props.char.number}</div>
-      </div>
-    )
-  }
-}
+// import TopThree from './TopThree'
+import Cards from './Cards';
 
 const AboutUs = () =>
   <header className="header">
@@ -37,6 +11,9 @@ const AboutUs = () =>
 class App extends Component {
   constructor() {
   super()
+
+this.updateChar = this.updateChar.bind(this)
+
   this.state = {
     imgUrl:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
     character:[
@@ -88,30 +65,92 @@ class App extends Component {
           number:"03",
           img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
         }
-      ]
+      ],
+      selected:"",
     }
+
+
   }
 
+  updateChar (arrCopy) {
+    var prevState = this.state.topThree;
+    prevState.unshift(arrCopy)
+    prevState.pop()
+    this.setState({
+      topThree: prevState
+    }) 
+  }
+
+  componentDidMount() {
+    this.setState({topThree:this.state.topThree})
+  }
+  
   render() {
     return (
       <div className="App">
         <AboutUs></AboutUs>
-        <header>
-          {this.state.topThree.map(user => 
-            <Card key={user.name} char={user}></Card>
-          )}
-        </header>
+
+          <TopThree topThree={this.state.topThree} update={this.updateChar} selected={this.state.selected}></TopThree>
+
         <div className="card-stack">
-          <Card char={this.state.character[0]} three={this.state.topThree}></Card>
-          <Card char={this.state.character[1]} three={this.state.topThree}></Card>
-          <Card char={this.state.character[2]} three={this.state.topThree}></Card>
-          <Card char={this.state.character[3]} three={this.state.topThree}></Card>
-          <Card char={this.state.character[4]} three={this.state.topThree}></Card>
-          <Card char={this.state.character[5]} three={this.state.topThree}></Card>
+          <Cards char={this.state.character[0]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          <Cards char={this.state.character[1]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          <Cards char={this.state.character[2]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          <Cards char={this.state.character[3]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          <Cards char={this.state.character[4]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          <Cards char={this.state.character[5]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
         </div>
       </div>
     );
   }
+}
+
+class TopThree extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      newArr: [1,2,3]
+    }
+
+    this.setCard = this.setCard.bind(this)
+
+  }  
+
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  setCard = (e) => {
+    var arrCopy = this.props.topThree;
+    arrCopy.unshift(this.props.char);
+    arrCopy.pop();
+    console.log('this', this)
+    console.log(arrCopy)
+    this.props.updateChar;
+  }
+
+  componentDidMount() {
+    console.log("setting state", this.state)
+    this.setState({newArr: this.props.topThree })
+  }
+
+  render() {
+    const firstOne = this.state.newArr.map(user => 
+        <Cards char={user} three={this.props.topThree} updateChar={this.updateChar}>            {user.name}</Cards>
+
+    )
+    return(
+  
+    <div className="top-three">
+        {/* {this.state.newArr.map(user => 
+          <div onClick={this.setCard}>
+            <Cards key={user.name} char={user} three={this.props.topThree} updateChar={this.updateChar}>            {user.name}</Cards>
+          </div>
+        )} */}
+        {firstOne}
+             {/* <button onClick={()=>console.log(this.props.topThree)}>CLICK</button> */}
+    </div>
+    )}
 }
 
 export default App;
