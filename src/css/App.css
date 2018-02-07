@@ -1,30 +1,7 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+@font-face {
+  font-family: "Open Sans";
+  src:url('../assets/fonts/OpenSans-Regular.ttf');
 }
 
 .header {
@@ -33,21 +10,68 @@
   letter-spacing: .7em;
   text-transform: lowercase;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
+  font-family:"Open Sans"
+}
 
-  /* font-family: "Open Sans"; */
+.top-three-card {
+  margin: 3%;
 }
 
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 250px;
-  height: 250px;
+  justify-content: space-evenly;
+  width: 70px;
+  height: 70px;
   border-radius: 8px;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
-  margin: 5%;
   border: 1px solid #eeeeee;
+  margin: 1%;
+}
+
+.card-stack .card > div.poke-name,
+.card-stack .card > div.poke-num {
+  display:none;
+}
+
+.card-stack > .card {
+  background: lightcyan;
+}
+
+.card-stack > .card:hover {
+  border: 1px solid lightgray;
+  outline: 2px solid lightgray;
+  outline-offset: 15px;
+  transition: all .1s ease-in;
+}
+
+.card-stack > .card:active {
+  background: rgb(154, 255, 255);
+
+}
+
+.top-three-card > .card {
+  width:250px;
+  height:250px;
+  font-family: "Open Sans";
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.top-three-card > .card > img {
+  border-radius: 50%;
+  border: 1px solid #eeeeee;
+  background: #eeeeee;
+  
+}
+
+.top-three-card > .card:nth-child(1) {
+  transition-property: width height background-color font-size left top color;
+  transition-duration:2s;
+  transition-delay:0.5s;
+  transition-timing-function: linear;
+
 }
 
 .App > header, .top-three{
@@ -58,5 +82,6 @@
 .card-stack {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
+  margin: 0 10% ;
 }

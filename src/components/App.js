@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-// import TopThree from './TopThree'
+import TopThree from './TopThree'
 import Cards from './Cards';
 
 const AboutUs = () =>
   <header className="header">
-    <h1>About Us</h1>
+    <h1>About the team</h1>
   </header>
 
 class App extends Component {
@@ -24,12 +24,12 @@ this.updateChar = this.updateChar.bind(this)
       },
       {
         name:"charmander",
-        number:"02",
+        number:"04",
         img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
       },
       {
         name:"squirtle",
-        number:"03",
+        number:"07",
         img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
       },
       {
@@ -57,16 +57,15 @@ this.updateChar = this.updateChar.bind(this)
         },
         {
           name:"charmander",
-          number:"02",
+          number:"04",
           img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
         },
         {
           name:"squirtle",
-          number:"03",
+          number:"07",
           img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
         }
       ],
-      selected:"",
     }
 
 
@@ -80,77 +79,28 @@ this.updateChar = this.updateChar.bind(this)
       topThree: prevState
     }) 
   }
-
-  componentDidMount() {
-    this.setState({topThree:this.state.topThree})
-  }
   
   render() {
+    const {topThree,character } = this.state
+    const allPokes = character.map( (user, idx) =>
+      <Cards key={idx} char={user} three={topThree} updateChar={this.updateChar}></Cards>
+    )
     return (
       <div className="App">
         <AboutUs></AboutUs>
 
-          <TopThree topThree={this.state.topThree} update={this.updateChar} selected={this.state.selected}></TopThree>
+          <TopThree topThree={topThree} updateChar={this.updateChar} ></TopThree>
 
         <div className="card-stack">
-          <Cards char={this.state.character[0]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
-          <Cards char={this.state.character[1]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
-          <Cards char={this.state.character[2]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
-          <Cards char={this.state.character[3]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
-          <Cards char={this.state.character[4]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
-          <Cards char={this.state.character[5]} three={this.state.topThree} updateChar={this.updateChar} selected={this.state.selected}></Cards>
+          {allPokes}
+          {allPokes}
+          {allPokes}          
+          {allPokes}       
+          {allPokes}
         </div>
       </div>
     );
   }
-}
-
-class TopThree extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      newArr: [1,2,3]
-    }
-
-    this.setCard = this.setCard.bind(this)
-
-  }  
-
-  handleClick = () => {
-    console.log('this is:', this);
-  }
-
-  setCard = (e) => {
-    var arrCopy = this.props.topThree;
-    arrCopy.unshift(this.props.char);
-    arrCopy.pop();
-    console.log('this', this)
-    console.log(arrCopy)
-    this.props.updateChar;
-  }
-
-  componentDidMount() {
-    console.log("setting state", this.state)
-    this.setState({newArr: this.props.topThree })
-  }
-
-  render() {
-    const firstOne = this.state.newArr.map(user => 
-        <Cards char={user} three={this.props.topThree} updateChar={this.updateChar}>            {user.name}</Cards>
-
-    )
-    return(
-  
-    <div className="top-three">
-        {/* {this.state.newArr.map(user => 
-          <div onClick={this.setCard}>
-            <Cards key={user.name} char={user} three={this.props.topThree} updateChar={this.updateChar}>            {user.name}</Cards>
-          </div>
-        )} */}
-        {firstOne}
-             {/* <button onClick={()=>console.log(this.props.topThree)}>CLICK</button> */}
-    </div>
-    )}
 }
 
 export default App;

@@ -5,28 +5,15 @@ class Cards extends Component {
       super(props)
 
     }
-
-    //  setCard = (props) => {
-    //   var arrCopy = this.props.three;
-    //   arrCopy.unshift(this.props.char);
-    //   arrCopy.pop();
-    //   console.log(arrCopy)
-    //   props.updateChar;
-    // }
-
-    // handleClick = () => {
-    //     console.log('this is:', this);
-    //   }
-   
   
     render(){
       return(
         <div className="card"
           onClick={()=> this.props.updateChar(this.props.char) } 
         >
-          <img src={this.props.char.img}></img>
-          <div>{this.props.char.name}</div>
-          <div>{this.props.char.number}</div>
+          <img className="poke-img" src={this.props.char.img}></img>
+          <div className="poke-name">{this.props.char.name}</div>
+          <div className="poke-num">#{this.props.char.number}</div>
         </div>
       )
     }
