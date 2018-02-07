@@ -33,9 +33,9 @@
 
   .card-stack > .card:active {
     background: rgb(154, 255, 255);
-    transform: translate(-200px, -500px);
+    /* transform: translate(-200px, -500px);
     transition: all 0.5s;
-    transition-timing-function: ease-in;
+    transition-timing-function: ease-in; */
   } 
 
   .top-three-card >.card {
