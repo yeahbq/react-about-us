@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { CSSTransitionGroup } from 'react-transition-group'
-
+import { VelocityTransitionGroup } from 'velocity-react';
+import 'velocity-animate';
+import 'velocity-animate/velocity.ui';
+import appAnimation from './appAnimation';
 
 class Cards extends Component {
     constructor(props) {
@@ -9,19 +11,22 @@ class Cards extends Component {
     }
   
     render(){
+      const handleClick = () => {
+        this.props.updateChar(this.props.char)
+        console.log('clicked')
+      }
+
       return(
-        <CSSTransitionGroup className="card"
-        component="div"
-        transitionName="order"
-        transitionEnterTimeout={500}
-        transitionLeaveTimout={500}
-        transitionAppear={true}
-          onClick={()=> this.props.updateChar(this.props.char) } 
+        <div className="card"
+          onClick={
+            handleClick
+            // ()=> this.props.updateChar(this.props.char) 
+          } 
         >
           <img className="poke-img" src={this.props.char.img}></img>
           <div className="poke-name">{this.props.char.name}</div>
           <div className="poke-num">#{this.props.char.number}</div>
-        </CSSTransitionGroup>
+        </div>
       )
     }
   }

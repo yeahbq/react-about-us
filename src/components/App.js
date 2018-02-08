@@ -91,8 +91,7 @@ this.updateChar = this.updateChar.bind(this)
       <div className="App">
         <AboutUs></AboutUs>
 
-          <TopThree topThree={topThree} updateChar={this.updateChar} ></TopThree>
-
+          <TopThree topThree={topThree} updateChar={this.updateChar} props={this.state.character}></TopThree>
         <div className="card-stack">
           {allPokes}
           {allPokes}

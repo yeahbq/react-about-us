@@ -10,11 +10,18 @@
   letter-spacing: .7em;
   text-transform: lowercase;
   box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.4);
-  font-family:"Open Sans"
+  font-family:"Open Sans";
+  width: 100%;
 }
 
 .top-three-card {
   margin: 3%;
+}
+
+.top-three-card > span {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -39,7 +46,7 @@
   background: lightcyan;
 }
 
-.top-three-card > .card {
+.top-three-card .card {
   width:250px;
   height:250px;
   font-family: "Open Sans";
@@ -47,21 +54,17 @@
   letter-spacing: .1em;
 }
 
-.top-three-card > .card > img {
+.top-three-card .card img {
   border-radius: 50%;
   border: 1px solid #eeeeee;
   background: #eeeeee;
-  
+
 }
-
-/* .top-three-card > .card:nth-child(1) {
-
-
-} */
 
 .App > header, .top-three{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .card-stack {

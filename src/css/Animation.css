@@ -1,22 +1,22 @@
-.order-enter {
+.card-enter, .slide-enter {
     background: red;
      transition: all 0.5s;
      transform: translateX(-120%)
 }
 
-.order-enter-active {
+.card-enter-active, .slide-enter-active {
     background: yellow;
     max-height: 60px;
     padding: 2rem 0 !important;
     transform: translateX(0);
 }
 
-.order-leave {
+.card-leave, .slide-leave {
     transition:all 0.5s;
     transform: translateX(0);
 }
 
-.order-leave-active {
+.card-leave-active, .slide-leave-active {
     transform: translateX(120%);
 }
  .card-stack > .card:hover {
