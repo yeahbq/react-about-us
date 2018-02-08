@@ -19,7 +19,7 @@ class TopThree extends Component {
             <VelocityTransitionGroup
             enter={appSliderAnimation.In}
             leave={appSliderAnimation.Out}
-            runOnMount={true}
+
             >
                 {headerCards}   
             </VelocityTransitionGroup>

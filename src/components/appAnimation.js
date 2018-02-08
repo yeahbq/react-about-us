@@ -8,7 +8,7 @@ const appAnimation = {
     animation: 'transition.slideLeftIn',
     delay: 100,
     duration: 1000,
-    stagger: '150',
+    // stagger: '150',
     display: 'flex',
   },
   Out: {
