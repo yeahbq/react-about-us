@@ -69,16 +69,25 @@ this.removeChar = this.removeChar.bind(this)
           img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
         }
       ],
-      isSelected:"",
-      isLeaving:"",
+      isSelected:        
+        {
+          name:"bulbasaur",
+          number:"01",
+          img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+        },
+      isLeaving:        
+        {
+          name:"squirtle",
+          number:"07",
+          img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+        },
     }
 
 
   }
-
+// NOTE TO SELF, INSTEAD OF MAP CURRENT TOP THREE, HAVE IT FIND ADDED AND REMOVED
   updateChar (selected, props, remove) {
-    this.setState({topThree:props})
-    this.setState({isLeaving:remove})
+    this.setState({topThree:props, isLeaving:remove, isSelected:selected})
   }
 
   removeChar () {

@@ -13,7 +13,7 @@ class Cards extends Component {
     render(){
       
       const handleClick = () => {
-        this.props.updateChar(this.props.char, [this.props.char,...this.props.three], this.props.three.slice(0,2))
+        this.props.updateChar(this.props.char, [this.props.char,...this.props.three], this.props.three[2])
       }
 
       return(
