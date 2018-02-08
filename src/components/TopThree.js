@@ -3,7 +3,7 @@ import Cards from './Cards';
 import { VelocityTransitionGroup } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
-import appAnimation from './appAnimation';
+import appSliderAnimation from './appAnimation';
 
 class TopThree extends Component {
     constructor(props) {
@@ -17,8 +17,8 @@ class TopThree extends Component {
       return(
         <div className="top-three-card" >
             <VelocityTransitionGroup
-            enter={appAnimation.In}
-            leave={appAnimation.Out}
+            enter={appSliderAnimation.In}
+            leave={appSliderAnimation.Out}
             runOnMount={true}
             >
                 {headerCards}   

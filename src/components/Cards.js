@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { VelocityTransitionGroup } from 'velocity-react';
-import 'velocity-animate';
-import 'velocity-animate/velocity.ui';
-import appAnimation from './appAnimation';
+// import { VelocityTransitionGroup } from 'velocity-react';
+// import 'velocity-animate';
+// import 'velocity-animate/velocity.ui';
+// // import appAnimation from './appAnimation';
 
 class Cards extends Component {
     constructor(props) {
@@ -13,19 +13,16 @@ class Cards extends Component {
     render(){
       const handleClick = () => {
         this.props.updateChar(this.props.char)
-        console.log('clicked')
+        // this.props.removeChar(this.props.char)
       }
 
       return(
         <div className="card"
-          onClick={
-            handleClick
-            // ()=> this.props.updateChar(this.props.char) 
-          } 
+          onClick={handleClick} 
         >
-          <img className="poke-img" src={this.props.char.img}></img>
-          <div className="poke-name">{this.props.char.name}</div>
-          <div className="poke-num">#{this.props.char.number}</div>
+            <img className="poke-img" src={this.props.char.img}></img>
+            <div className="poke-name">{this.props.char.name}</div>
+            <div className="poke-num">#{this.props.char.number}</div>
         </div>
       )
     }

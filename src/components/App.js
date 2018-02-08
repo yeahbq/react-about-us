@@ -15,6 +15,7 @@ class App extends Component {
   super()
 
 this.updateChar = this.updateChar.bind(this)
+// this.removeChar = this.removeChar.bind(this)
 
   this.state = {
     imgUrl:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
@@ -74,18 +75,30 @@ this.updateChar = this.updateChar.bind(this)
   }
 
   updateChar (arrCopy) {
-    var prevState = this.state.topThree;
-    prevState.unshift(arrCopy)
-    prevState.pop()
-    this.setState({
-      topThree: prevState
-    }) 
+    let prevState = this.state.topThree;
+    let newState = [arrCopy, ...prevState]
+    this.setState({topThree:newState}) 
+    // newState.splice(-1,1)
+    // console.log('newState after added', newState)
+    // this.setState((prevState)=>{topThree:prevState.splice(-1,1)})
   }
+
+  // removeChar () {
+  //   const prevState = this.state.topThree
+  //   console.log('what is this previous state', prevState)
+  //   const popped = prevState.pop()
+  //   console.log('prevState', prevState, "popped", popped)
+  //   this.setState({
+  //     topThree:prevState
+  //   })
+  // }
   
   render() {
     const {topThree,character } = this.state
     const allPokes = character.map( (user, idx) =>
-      <Cards key={idx} char={user} three={topThree} updateChar={this.updateChar}></Cards>
+      <Cards key={idx} char={user} three={topThree} updateChar={this.updateChar} 
+      // removeChar={this.removeChar}
+      ></Cards>
     )
     return (
       <div className="App">
