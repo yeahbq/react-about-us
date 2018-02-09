@@ -3,7 +3,6 @@ import '../css/App.css';
 import '../css/Animation.css';
 import TopThree from './TopThree'
 import Cards from './Cards';
-// import { CSSTransitionGroup } from 'react-transition-group'
 
 const AboutUs = () =>
   <header className="header">
@@ -86,34 +85,26 @@ this.handleRemove = this.handleRemove.bind(this)
 
 
   }
-// NOTE TO SELF, INSTEAD OF MAP CURRENT TOP THREE, HAVE IT FIND ADDED AND REMOVED
   updateChar (selected, props, remove) {
-    this.setState({topThree: [selected].concat(props), isLeaving:remove, isSelected:selected},
-  () => this.handleRemove()
-  )
-    // this.setState((prevState, props)=> {topThree: [prevState, ...props] })
-    console.log([selected].concat(props))
-    console.log('i updated state', this.state.topThree)
-    // this.handleRemove();
+    const newItems = [selected].concat(this.state.topThree);
+    this.setState({topThree: newItems},
+      () => {
+        const removeItems = this.state.topThree.slice();
+        removeItems.splice(this.state.topThree.length-1, 1);
+        this.setState({topThree: removeItems});
+      }
+    )
   }
 
   handleAdd() {
-    this.setState({ topThree: this.state.topThree.concat(this.state.isSelected)});
+    this.setState({ topThree: this.state.topThree.concat(this.state.isSelected)})
   }
+
 
   handleRemove() {
-    this.setState({ topThree: this.state.topThree.slice(0, this.state.topThree.length - 1) });
+    this.setState({ topThree: this.state.topThree.slice(0,this.state.topThree.length - 1) });
     console.log('i deleted!', this.state.topThree)
   }
-
-  // componentDidMount() {
-  //   console.log('running on load', this.state.topThree)
-  //   this.setState({topThree: [this.state.isSelected, this.state.topThree[1], this.state.isLeaving]})
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({topThree: [this.nextProps.isSelected, this.nextProps.topThree[1], this.nextProps.isLeaving]})
-  // }
   
   render() {
     const {topThree,character,isSelected,isLeaving } = this.state
