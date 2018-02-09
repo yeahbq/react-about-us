@@ -9,7 +9,7 @@ class Cards extends Component {
       super(props)
     }
     handleClick = () => {
-      this.props.updateChar(this.props.char, this.props.three, this.props.three[1])
+      this.props.updateChar(this.props.char, this.props.three)
     }
   
     render(){

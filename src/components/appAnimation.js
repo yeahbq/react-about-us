@@ -9,7 +9,7 @@ const appAnimation = {
   Out: {
     animation: 'transition.slideRightOut', 
     // delay: 500,
-    duration: 200
+    duration: 500
   }
 };
 

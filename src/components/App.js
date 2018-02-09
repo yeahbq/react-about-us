@@ -14,8 +14,6 @@ class App extends Component {
   super()
 
 this.updateChar = this.updateChar.bind(this)
-this.handleAdd = this.handleAdd.bind(this)
-this.handleRemove = this.handleRemove.bind(this)
 
   this.state = {
     imgUrl:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
@@ -85,7 +83,7 @@ this.handleRemove = this.handleRemove.bind(this)
 
 
   }
-  updateChar (selected, props, remove) {
+  updateChar (selected, props) {
     const newItems = [selected].concat(this.state.topThree);
     this.setState({topThree: newItems},
       () => {
@@ -95,27 +93,16 @@ this.handleRemove = this.handleRemove.bind(this)
       }
     )
   }
-
-  handleAdd() {
-    this.setState({ topThree: this.state.topThree.concat(this.state.isSelected)})
-  }
-
-
-  handleRemove() {
-    this.setState({ topThree: this.state.topThree.slice(0,this.state.topThree.length - 1) });
-    console.log('i deleted!', this.state.topThree)
-  }
   
   render() {
     const {topThree,character,isSelected,isLeaving } = this.state
+    const props = {
+      three:topThree, 
+      updateChar: this.updateChar,
+    }
     const allPokes = character.map( (user, idx) =>
       <Cards key={idx} char={user} 
-      three={topThree} 
-      updateChar={this.updateChar} 
-      isSelected={isSelected}
-      isLeaving={isLeaving}
-      handleAdd={this.handleAdd}
-      handleRemove={this.handleRemove}
+      {...props}
       />      
     )
     return (
@@ -123,9 +110,7 @@ this.handleRemove = this.handleRemove.bind(this)
         <AboutUs></AboutUs>
 
           <TopThree topThree={topThree} updateChar={this.updateChar} 
-          props={this.state.character}
-          isSelected={isSelected}
-          isLeaving={isLeaving}
+          {...props}
           />
         <div className="card-stack">
           {allPokes}
