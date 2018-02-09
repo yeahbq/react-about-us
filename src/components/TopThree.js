@@ -21,11 +21,12 @@ class TopThree extends Component {
             return <Cards char={card} three={topThree} updateChar={updateChar}  />;
         }
         const headerCards = topThree.map((user, i) => {
-            return <Cards key={i} char={user} three={topThree} updateChar={updateChar} />;
+            return <Cards style={{order:"-1"}} key={i} char={user} three={topThree} updateChar={updateChar} />;
          });
       return(
         <div className="top-three-card" >
             <VelocityTransitionGroup
+            style={{display: "flex"}}
             enter={appSliderAnimation.In}
             leave={appSliderAnimation.Out}
             runOnMount={true}

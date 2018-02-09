@@ -3,7 +3,7 @@ import '../css/App.css';
 import '../css/Animation.css';
 import TopThree from './TopThree'
 import Cards from './Cards';
-import { CSSTransitionGroup } from 'react-transition-group'
+// import { CSSTransitionGroup } from 'react-transition-group'
 
 const AboutUs = () =>
   <header className="header">
@@ -15,7 +15,6 @@ class App extends Component {
   super()
 
 this.updateChar = this.updateChar.bind(this)
-this.removeChar = this.removeChar.bind(this)
 this.handleAdd = this.handleAdd.bind(this)
 this.handleRemove = this.handleRemove.bind(this)
 
@@ -89,15 +88,13 @@ this.handleRemove = this.handleRemove.bind(this)
   }
 // NOTE TO SELF, INSTEAD OF MAP CURRENT TOP THREE, HAVE IT FIND ADDED AND REMOVED
   updateChar (selected, props, remove) {
-    let copy = JSON.parse(JSON.stringify(props))
-
-    this.setState({topThree:[selected], isLeaving:remove, isSelected:selected})
+    this.setState({topThree: [selected].concat(props), isLeaving:remove, isSelected:selected},
+  () => this.handleRemove()
+  )
     // this.setState((prevState, props)=> {topThree: [prevState, ...props] })
-  }
-
-  removeChar () {
-    let newArray = this.state.topThree.slice(0,1)
-    this.setState({topThree:newArray})
+    console.log([selected].concat(props))
+    console.log('i updated state', this.state.topThree)
+    // this.handleRemove();
   }
 
   handleAdd() {
@@ -106,6 +103,7 @@ this.handleRemove = this.handleRemove.bind(this)
 
   handleRemove() {
     this.setState({ topThree: this.state.topThree.slice(0, this.state.topThree.length - 1) });
+    console.log('i deleted!', this.state.topThree)
   }
 
   // componentDidMount() {
