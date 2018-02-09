@@ -1,19 +1,19 @@
 
-import { velocityHelpers } from 'velocity-react';
+// import { velocityHelpers } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
 
 const appAnimation = {
   In: {
-    animation: 'transition.slideLeftIn',
-    delay: 100,
-    duration: 1000,
+    animation: 'transition.bounceLeftIn',
+    // delay: 100,
+    duration: 500,
     // stagger: '150',
     display: 'flex',
   },
   Out: {
-    animation: 'transition.slideRightOut', 
-    duration: 1000
+    animation: 'transition.perspectiveRightOut', 
+    duration: 500
   }
 };
 

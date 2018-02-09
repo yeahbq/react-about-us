@@ -16,6 +16,8 @@ class App extends Component {
 
 this.updateChar = this.updateChar.bind(this)
 this.removeChar = this.removeChar.bind(this)
+this.handleAdd = this.handleAdd.bind(this)
+this.handleRemove = this.handleRemove.bind(this)
 
   this.state = {
     imgUrl:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
@@ -87,27 +89,55 @@ this.removeChar = this.removeChar.bind(this)
   }
 // NOTE TO SELF, INSTEAD OF MAP CURRENT TOP THREE, HAVE IT FIND ADDED AND REMOVED
   updateChar (selected, props, remove) {
-    this.setState({topThree:props, isLeaving:remove, isSelected:selected})
+    let copy = JSON.parse(JSON.stringify(props))
+
+    this.setState({topThree:[selected], isLeaving:remove, isSelected:selected})
+    // this.setState((prevState, props)=> {topThree: [prevState, ...props] })
   }
 
   removeChar () {
-    let newArray = this.state.topThree.slice(0,2)
+    let newArray = this.state.topThree.slice(0,1)
     this.setState({topThree:newArray})
   }
+
+  handleAdd() {
+    this.setState({ topThree: this.state.topThree.concat(this.state.isSelected)});
+  }
+
+  handleRemove() {
+    this.setState({ topThree: this.state.topThree.slice(0, this.state.topThree.length - 1) });
+  }
+
+  // componentDidMount() {
+  //   console.log('running on load', this.state.topThree)
+  //   this.setState({topThree: [this.state.isSelected, this.state.topThree[1], this.state.isLeaving]})
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({topThree: [this.nextProps.isSelected, this.nextProps.topThree[1], this.nextProps.isLeaving]})
+  // }
   
   render() {
-    const {topThree,character } = this.state
+    const {topThree,character,isSelected,isLeaving } = this.state
     const allPokes = character.map( (user, idx) =>
-      <Cards key={idx} char={user} three={topThree} updateChar={this.updateChar} 
-      removeChar={this.removeChar}
-      ></Cards>
-      
+      <Cards key={idx} char={user} 
+      three={topThree} 
+      updateChar={this.updateChar} 
+      isSelected={isSelected}
+      isLeaving={isLeaving}
+      handleAdd={this.handleAdd}
+      handleRemove={this.handleRemove}
+      />      
     )
     return (
       <div className="App">
         <AboutUs></AboutUs>
 
-          <TopThree topThree={topThree} updateChar={this.updateChar} props={this.state.character}></TopThree>
+          <TopThree topThree={topThree} updateChar={this.updateChar} 
+          props={this.state.character}
+          isSelected={isSelected}
+          isLeaving={isLeaving}
+          />
         <div className="card-stack">
           {allPokes}
           {allPokes}

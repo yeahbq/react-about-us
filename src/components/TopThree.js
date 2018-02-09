@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Cards from './Cards';
-import { VelocityTransitionGroup } from 'velocity-react';
+import { VelocityTransitionGroup, VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
+import { velocityHelpers } from 'velocity-react';
+
 import appSliderAnimation from './appAnimation';
 
 class TopThree extends Component {
@@ -10,7 +12,14 @@ class TopThree extends Component {
       super(props)
     }  
     render() {
-        const {updateChar, topThree} = this.props
+        const {updateChar, topThree, isSelected, isLeaving} = this.props
+        const middleCard = topThree[1]
+        const selected = isSelected;
+        const leaving = isLeaving;
+        const fillCard = (card) => {
+            console.log('card', card)
+            return <Cards char={card} three={topThree} updateChar={updateChar}  />;
+        }
         const headerCards = topThree.map((user, i) => {
             return <Cards key={i} char={user} three={topThree} updateChar={updateChar} />;
          });
@@ -19,10 +28,13 @@ class TopThree extends Component {
             <VelocityTransitionGroup
             enter={appSliderAnimation.In}
             leave={appSliderAnimation.Out}
-
+            runOnMount={true}
             >
-                {headerCards}   
-            </VelocityTransitionGroup>
+                {/* {fillCard(selected)} */}
+                {headerCards}
+                {/* {leaving ? fillCard(leaving) : undefined} */}
+                {/* {fillCard(leaving)} */}
+    </VelocityTransitionGroup>
         </div>
       )}
   }
