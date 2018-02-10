@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import { VelocityTransitionGroup, VelocityComponent } from 'velocity-react';
 import 'velocity-animate';
 import 'velocity-animate/velocity.ui';
-// import appAnimation from './appAnimation';
 
 class Cards extends Component {
     constructor(props) {
       super(props)
     }
+
     handleClick = () => {
       this.props.updateChar(this.props.char, this.props.three)
-      // console.log(this.getBoundingClientRect())
     }
   
     render(){
-
- 
-
+      
       return(
         
         <div className="card"
-          onClick={(e)=>this.handleClick(e)} 
+          onClick={this.handleClick} 
           style={{order:`${this.props.order}`}} 
         >
             <img className="poke-img" src={this.props.char.img} alt={"poke-img"}/>
