@@ -14,8 +14,9 @@ class TopThree extends Component {
       return(
         <div className="top-three-card" >
             <VelocityTransitionGroup
-            style={{display: "flex"}}
-            leave={ {animation:'transition.slideRightOut', duration: 500} }
+            // enter={ {animation:'transition.expandIn', duration: 500, display:'flex'} }
+            leave={ {animation:'transition.perspectiveRightOut', duration: 500} }
+            runOnMount={true}
             >
                 {headerCards}
             </VelocityTransitionGroup>

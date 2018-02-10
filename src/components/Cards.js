@@ -10,6 +10,7 @@ class Cards extends Component {
     }
     handleClick = () => {
       this.props.updateChar(this.props.char, this.props.three)
+      // console.log(this.getBoundingClientRect())
     }
   
     render(){

@@ -3,6 +3,8 @@ import '../css/App.css';
 import '../css/Animation.css';
 import TopThree from './TopThree'
 import Cards from './Cards';
+import { VelocityTransitionGroup } from 'velocity-react';
+
 
 const AboutUs = () =>
   <header className="header">
@@ -79,11 +81,13 @@ this.updateChar = this.updateChar.bind(this)
           number:"07",
           img:"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
         },
+        pos:""
     }
 
 
   }
   updateChar (selected, props) {
+
     const newItems = [selected].concat(this.state.topThree);
     this.setState({topThree: newItems},
       () => {
@@ -103,15 +107,22 @@ this.updateChar = this.updateChar.bind(this)
     const allPokes = character.map( (user, idx) =>
       <Cards key={idx} char={user} 
       {...props}
+      ref={(e) => { }}
       />      
     )
+
     return (
       <div className="App">
         <AboutUs></AboutUs>
-
+        <VelocityTransitionGroup
+            enter={ {animation:'transition.slideLeftIn', duration: 500} }
+            leave={ {animation:'transition.slideRightOut', duration: 500} }
+            >
           <TopThree topThree={topThree} updateChar={this.updateChar} 
           {...props}
           />
+        </VelocityTransitionGroup>
+
         <div className="card-stack">
           {allPokes}
           {allPokes}
